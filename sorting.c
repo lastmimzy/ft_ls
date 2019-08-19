@@ -11,6 +11,28 @@ typedef    struct        s_list
     struct s_list    *next;
 }                         t_list;
 
+static t_list    *ft_sorting_r(t_list *head)
+{
+    t_list    *str1;    
+    t_list    *str2;  
+    char      *temp;
+
+    str1 = head;
+    while (str1)
+    {
+        str2 = str1->next;
+        while (str2)
+        {
+            temp = str1->content;
+            str1->content = str2->content;
+            str2->content = temp;
+            str2 = str2->next;
+        }
+        str1 = str1->next;
+    }
+    return (head);
+}
+
 static t_list    *ft_sorting_ascii(t_list *head)
 {
     t_list    *str1;
@@ -43,8 +65,8 @@ t_list			*ft_sorting(t_list *head, t_flag *flag)
 //		head = ft_sorting_t(); 
 //	else
 	  	head = ft_sorting_ascii(head);
-//	if (flag->f_rev)
-//		head = ft_sorting_r();
+	if (flag->f_rev)
+		head = ft_sorting_r(head);
 	return (head);
 }
 
