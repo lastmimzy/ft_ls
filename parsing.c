@@ -114,6 +114,6 @@ int            main()
 
     firstarg = 1;
     ft_parseflag(ac, av, &firstarg, &flag);
-   // return (printed(ac, av, firstarg, &flag));
+   // return (ft_printed(ac, av, firstarg, &flag));
     return (0);
 }
