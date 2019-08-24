@@ -1,7 +1,42 @@
-int			ft_insidedir(const char *content, t_flag *flag)
+// http://www.firststeps.ru/linux/r.php?20 - про открытие директорий
+// инклуды для чтения содержимого директорий:
+#include <stdio.h>
+#include <sys/types.h>
+#include <dirent.h>
+
+typedef struct dirent		t_dirent;
+typedef struct stat		t_stat;
+
+int         ft_insidedir(const char *content, t_flag *flag)
 {
-    .
-    .
+	DIR			*dir;
+	t_dirent	*entry;
+	t_list		*head;
+	static int      i; //del
+
+	i=1; //del
+
+	head = NULL;
+    if (content)
+    {
+        if ( flag->f_subdir && flag->f_long)
+            printf("\n%s:\n", content);
+        else
+            printf("%s:\n", content);
+    }
+	if (!(dir = opendir(content)))
+	{
+		ft_printf("ft_ls: %s: %s\n", content, strerror(errno));
+		return(errno);
+	}
+	while ((entry = readdir(dir)))
+	{
+	    printf("read dir %d\n", i++); //del
+		.
+		.
+		.
+	}
+	return (0);
 }
 
 
