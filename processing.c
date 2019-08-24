@@ -26,7 +26,7 @@ int         ft_insidedir(const char *content, t_flag *flag)
     }
 	if (!(dir = opendir(content)))
 	{
-		ft_printf("ft_ls: %s: %s\n", content, strerror(errno));
+		printf("ft_ls: %s: %s\n", content, strerror(errno));
 		return(errno);
 	}
 	while ((entry = readdir(dir)))
