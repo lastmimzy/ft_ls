@@ -10,33 +10,36 @@ typedef struct stat		t_stat;
 int         ft_insidedir(const char *content, t_flag *flag)
 {
 	DIR			*dir;
-	t_dirent	*entry;
-	t_list		*head;
-	static int      i; //del
-
-	i=1; //del
+	t_dirent		*entry;
+	t_list			*head;
+	char  		        *path;
 
 	head = NULL;
-    if (content)
-    {
-        if ( flag->f_subdir && flag->f_long)
-            printf("\n%s:\n", content);
-        else
-            printf("%s:\n", content);
-    }
-	if (!(dir = opendir(content)))
-	{
+    	if (content)
+    	{
+        	if ( flag->f_subdir && flag->f_long)
+            		printf("\n%s:\n", content);
+        	else
+            		printf("%s:\n", content);
+    	}
+    	if (!(dir = opendir(content)))
+    	{
 		printf("ft_ls: %s: %s\n", content, strerror(errno));
-		return(errno);
-	}
-	while ((entry = readdir(dir)))
-	{
-	    printf("read dir %d\n", i++); //del
-		.
-		.
-		.
-	}
-	return (0);
+	    	return(errno);
+    	}
+    	while ((entry = readdir(dir)))
+    	{
+		path = ft_strnew(ft_strlen(entry->d_name) + 1);  
+	    	strncpy(path, entry->d_name, ft_strlen(entry->d_name));
+		if (flag->f_all || entry->d_name[0] != '.')
+            		ft_lstadd(&head, ft_lstnew(path, ft_strlen(path) + 1));
+    	}
+    	closedir(dir) //if -1 => error
+    	ft_total();
+    	ft_display(....); 
+    	if (flag->f_subdir)
+		ft_processing(flag, ft_sorting(head, flag)); //files, then dir
+    	return (0);
 }
 
 
